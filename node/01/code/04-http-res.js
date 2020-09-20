@@ -22,7 +22,7 @@ server.on("request",function(request,response){
     // 这个简单的服务器的能力非常弱，无论什么请求，都只能响应 hello node.js
     // 升级： 我希望当请求的路径不一样的时候，响应的结果也不一样
     // 例如：/index  /login（登陆） /register（注册页面）这几个页面的返回不同的响应数据
-    在05-http-url-response.js中查看
+    // 在05-http-url-response.js中查看
 })
 
 // 第四步、绑定端口号，启动服务器

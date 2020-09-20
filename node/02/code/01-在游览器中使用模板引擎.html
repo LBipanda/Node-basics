@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-在游览器中使用模板引擎</title>
+</head>
+<body>
+    <!-- 在游览器中引用 art-template 模板引擎 -->
+    <script src="./node_modules/art-template/lib/template-web.js"></script>
+    <script type="text/template" id="tpl">
+        你好，我叫 {{name}}
+        我喜欢 {{hobbies}}
+    </script>
+
+    <script>
+        var ret = template("tpl",{
+            name: "LBipanda",
+            hobbies: "踢足球"
+        })
+        console.log(ret)
+    </script>
+</body>
+</html>

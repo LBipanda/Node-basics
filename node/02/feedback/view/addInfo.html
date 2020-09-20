@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增留言</title>
+    <link rel="stylesheet" href="public/css/index.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/1.4.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <form action="/add" method="get">
+        <div class="container">
+            <h1>新增留言</h1><hr>
+            <div class="form-group">
+                <label>留言名字：</label>
+                <input type="text" placeholder="请输入你的名字" name="name">
+            </div>
+            <div class="form-group">
+                <label>留言内容：</label>
+                <textarea id="" cols="30" rows="10" name="message"></textarea>
+            </div>
+            <div class="form-group">
+                <label></label>
+                <button type="submit" class="btn success ">发表</button>
+                <button class="btn ml-15">返回主页</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
