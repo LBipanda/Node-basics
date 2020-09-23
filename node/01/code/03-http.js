@@ -1,5 +1,4 @@
-const { Http2ServerRequest } = require("http2")
-
+var http = require("http")
 // 1.使用 Node 构建一个 Web 服务器
 // 2.在 Node 中专门提供了一个核心模块： Http
 // 3.http 这个模块的职责专门帮你编写服务器的
