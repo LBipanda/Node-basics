@@ -31,6 +31,4 @@ app.get("/login",function(req,res){
     </html>`)
 })
 
-app.listen(2222,function(){
-    console.log("express-helloExpress is running at port 2222")
-})
+app.listen(2222,() => console.log("express-helloExpress is running at port 2222") )
