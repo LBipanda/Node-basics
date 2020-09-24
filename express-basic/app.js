@@ -15,6 +15,10 @@ app.get("/",function(req,res){
 app.get("/product",function(req,res){
     res.send("你好 product!!!!!!")
 })
+// app.get("/template",function(req,res){
+//     // 在 Express 中使用模板引擎：resrender("文件名",{模板对象})
+
+// })
 
 // 相当于server.listen
 app.listen(1949,function(){
