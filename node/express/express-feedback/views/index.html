@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 游览器收到响应内容后，就需要从上到下依次解析，解析过程中会发现：
+    link、script、img、video、audio、iframe 等带有 src 或者 href（link）
+    属性标签（具有外链资源）的时候，游览器会自动对这些资源发起新的请求 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/1.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/index.css">
+    <title>留言板</title>
+    <!-- 这里的src不像游览器那样是文件地址，可以把他想象成游览器地址 -->
+    <script src="/public/js/index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="/public/image/index.jpg" style="height: 150px; margin-left: 20px;" /><br>
+        <a href="/addInfo" class="btn success">发表留言</a>
+        <hr>
+        <h2>留言板</h2>
+        <ul class="content-ul">
+            {{each comments}}
+            <li class="content-li">{{$value.name}}说：{{$value.message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</body>
+</html>
