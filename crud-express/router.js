@@ -1,4 +1,5 @@
 let fs = require("fs")
+let Student = require("./student.js")
 
 // 这样也不方便（第一种方式）
 // module.exports = function(app){
@@ -22,13 +23,22 @@ let express = require("express")
 let router = express.Router()
 // 3、把路由都挂载到 router 路由容器中
 router.get("/students",(req,res) => {
-    fs.readFile("./db.json","utf8",function(err,data){
+    // fs.readFile("./db.json","utf8",function(err,data){
+    //     if(err){
+    //         return res.status(500).send("Server error")
+    //     }
+    //     res.render("index.html",{
+    //         // 从文件中读取的数据一定是字符串，，我们需要把字符串数据转为对象  
+    //         students: JSON.parse(data).students
+    //     })
+    // })
+    Student.findAll((err,students) => {
         if(err){
             return res.status(500).send("Server error")
         }
         res.render("index.html",{
             // 从文件中读取的数据一定是字符串，，我们需要把字符串数据转为对象  
-            students: JSON.parse(data).students
+            students: students
         })
     })
 })
@@ -37,20 +47,7 @@ router.get("/students/new",(req,res) => {
 })
 router.post("/students/new",(req,res) => {
     console.log(req.body)
-    fs.readFile("./db.json","utf8",(err,data){
-        if(err){
-            return res.status(500).send("Server error")
-        }
-        var tempData = JSON.parse(data).students
-        tempData.unshift(req.body)
-        fs.writeFile("./db.json",tempData,function(errTwo){
-            if(errTwo){ //判断读取文件是否错误
-                return res.status(500).send("网络异常，新增失败")
-            }else{
-                res.redirect("/students")
-            }
-        })
-    })
+    
 })
 router.get("/students/edit",(req,res) => {
 
