@@ -32,7 +32,7 @@ router.get("/students",(req,res) => {
     //         students: JSON.parse(data).students
     //     })
     // })
-    Student.findAll((err,students) => {
+    Student.findAll(function(err,students){
         if(err){
             return res.status(500).send("Server error")
         }
@@ -47,7 +47,13 @@ router.get("/students/new",(req,res) => {
 })
 router.post("/students/new",(req,res) => {
     console.log(req.body)
-    
+    Student.add(req.body,function(err){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        res.redirect("/students")
+    })
+
 })
 router.get("/students/edit",(req,res) => {
 

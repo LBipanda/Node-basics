@@ -2,6 +2,8 @@ let fs = require("fs")
 const { callbackify } = require("util")
 let dbPath = "./db.json"
 
+// Node.js 异步编程的直接体现就是回调。异步编程依托于回调来实现
+// 如果需要获取一个函数中的异步操作结果，必须通过回调函数来获取
 module.exports={
 /**
  * 获取所有学生信息列表
@@ -20,8 +22,22 @@ findAll(callback){
 /**
  * 添加学生信息
  */
-add(){
-
+add(student,callback){
+    fs.readFile(dbPath,"utf8",function(err,data){
+        if(err){
+            callback(err)
+        }
+        var tempStudents = JSON.parse(data).students
+        student.id = tempStudents.length + 1
+        tempStudents.push(student)
+        var fileData = JSON.stringify({students: tempStudents})
+        fs.writeFile(dbPath,fileData,function(err2){
+            if(err){
+                callback(err)
+            }
+                callback(err2) //文件写入成功的话 res2 为null
+        })
+    })
 },
 /**
  * 编辑学生信息
@@ -37,6 +53,7 @@ delete(){
 }
 
 }
+// 封装异步 API
 
 // student.js 路由模块
     // 职责：
