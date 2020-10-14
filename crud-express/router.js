@@ -21,6 +21,12 @@ let Student = require("./student.js")
 let express = require("express")
 // 2、创建一个路由容器
 let router = express.Router()
+
+Student.update({id: 1,name: "张小三"},function(err){
+    if(err){
+        return res.status(500).send("Server error")
+    }
+})
 // 3、把路由都挂载到 router 路由容器中
 router.get("/students",(req,res) => {
     // fs.readFile("./db.json","utf8",function(err,data){
@@ -55,7 +61,7 @@ router.post("/students/new",(req,res) => {
     })
 
 })
-router.get("/students/edit",(req,res) => {
+router.get("/students/update",(req,res) => {
 
 })
 router.post("/students/edit",(req,res) => {

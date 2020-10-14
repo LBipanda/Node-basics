@@ -42,8 +42,27 @@ add(student,callback){
 /**
  * 编辑学生信息
  */
-edit(){
-
+update(student,callback){
+    fs.readFile(dbPath,"utf8",function(err,data){
+        if(err){
+            callback(err)
+        }
+        var tempStudents = JSON.parse(data).students
+        //修改学生信息
+        var tempStu = tempStudents.find(function(item){
+            return item.id == tempStudents.id
+        })
+        for(let key in student){
+            tempStu[key] = student[key]
+        }
+        var fileData = JSON.stringify({students: tempStudents})
+        fs.writeFile(dbPath,fileData,function(err2){
+            if(err){
+                callback(err)
+            }
+                callback(err2) //文件写入成功的话 res2 为null
+        })
+    })
 },
 /**
  * 删除学生信息
