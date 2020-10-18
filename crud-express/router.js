@@ -22,11 +22,6 @@ let express = require("express")
 // 2、创建一个路由容器
 let router = express.Router()
 
-Student.update({id: 1,name: "张小三"},function(err){
-    if(err){
-        return res.status(500).send("Server error")
-    }
-})
 // 3、把路由都挂载到 router 路由容器中
 router.get("/students",(req,res) => {
     // fs.readFile("./db.json","utf8",function(err,data){
@@ -61,14 +56,35 @@ router.post("/students/new",(req,res) => {
     })
 
 })
-router.get("/students/update",(req,res) => {
-
+router.get("/students/edit",(req,res) => {
+    // 根据参数查出对应的信息
+    // 使用模板引擎渲染页面
+    Student.findById(parseInt(req.query.id),function(err,student){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        console.log(student)
+        res.render("edit.html",{
+            student: student
+        })
+    })
 })
-router.post("/students/edit",(req,res) => {
-
+router.post("/students/editById",(req,res) => {
+    Student.editById(req.body,function(err){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        res.redirect("/students")
+    })
 })
 router.get("/students/delete",(req,res) => {
-
+// 获取id，根据id删除对应的信息
+    Student.delete(req.query.id,function(err){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        res.redirect("/students")
+    })
 })
 
 //把 router 路由容器抛出
