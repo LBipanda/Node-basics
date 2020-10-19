@@ -21,6 +21,9 @@ let Student = require("./student.js")
 let express = require("express")
 // 2、创建一个路由容器
 let router = express.Router()
+router.get("/",(req,res) => {
+    res.redirect("/students")
+})
 // 3、把路由都挂载到 router 路由容器中
 router.get("/students",(req,res) => {
     // fs.readFile("./db.json","utf8",function(err,data){
