@@ -59,13 +59,34 @@ router.post("/students/new",(req,res) => {
 
 })
 router.get("/students/edit",(req,res) => {
-
+    // 根据参数查出对应的信息
+    // 使用模板引擎渲染页面
+    Student.findById(parseInt(req.query.id),function(err,student){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        console.log(student)
+        res.render("edit.html",{
+            student: student
+        })
+    })
 })
-router.post("/students/edit",(req,res) => {
-
+router.post("/students/editById",(req,res) => {
+    Student.editById(req.body,function(err){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        res.redirect("/students")
+    })
 })
 router.get("/students/delete",(req,res) => {
-
+// 获取id，根据id删除对应的信息
+    Student.delete(req.query.id,function(err){
+        if(err){
+            return res.status(500).send("Server error")
+        }
+        res.redirect("/students")
+    })
 })
 
 //把 router 路由容器抛出
